@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router';
+import AddUser from '../../pages/AddUser';
 import Admin from '../../pages/Admin';
 import Home from '../../pages/Home';
 import Login from '../../pages/Login';
@@ -14,9 +15,9 @@ function App() {
   useEffect(() => {
     // If user is in localstorage -> log user
     const user = JSON.parse(localStorage.getItem('user'));
-    const token = localStorage.getItem('token');
+    const accessToken = localStorage.getItem('accessToken');
 
-    if(token) {
+    if(accessToken) {
       dispatch(setUser(user));
     }
   })
@@ -27,10 +28,13 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home /> } />
         <Route path="/connexion" element={ <Login /> } />
-        
+
         {/* Private routes */}
         {logged && (
-          <Route path="/dashboard" element={ <Admin /> } />
+          <>
+            <Route path="/dashboard" element={ <Admin /> } />
+            <Route path="/dashboard/user" element={ <AddUser /> } />
+          </>
         )}
       </Routes>
     </div>
