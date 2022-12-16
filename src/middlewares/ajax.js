@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { LOGIN, SEND_MESSAGE } from '../actions';
 import { displayError, displayMessage, initForm, toggleLoading } from '../reducers/formSlice';
-import { displayLoginError, initLoginForm, toggleLoginLoading } from '../reducers/loginSlice';
+import { displayUserError, initUserForm, toggleLogged, toggleUserLoading } from '../reducers/userSlice';
 
 const instance = axios.create({
   baseURL: 'http://localhost:3500'
@@ -37,18 +37,21 @@ const ajaxMiddleware = store => next => action => {
   if (action.type === LOGIN) {
     const { login: { email, password } } = store.getState();
 
-    store.dispatch(toggleLoginLoading());
+    store.dispatch(toggleUserLoading());
     
     instance.post('/login', { email, password }, config)
       .then((response) => {
         console.log('res', response);
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
         store.dispatch(initForm());
+        store.dispatch(toggleLogged(true));
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {
-          return store.dispatch(displayLoginError(error.response.data.message));
+          return store.dispatch(displayUserError(error.response.data.message));
         } 
-        store.dispatch(displayLoginError('Erreur serveur. Merci de réessayer plus tard.'))
+        store.dispatch(displayUserError('Erreur serveur. Merci de réessayer plus tard.'))
       })
   }
 

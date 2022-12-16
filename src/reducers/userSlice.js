@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const loginSlice = createSlice({
+export const userSlice = createSlice({
   name: 'login',
   initialState: {
     loading: false,
@@ -8,40 +8,44 @@ export const loginSlice = createSlice({
     password: '',
     response: '',
     error: false,
+    logged: false,
   },
   reducers: {
-    changeLoginEmail: (state, action) => {
+    changeUserEmail: (state, action) => {
       state.email = action.payload;
       state.error = false;
       state.response = '';
     },
-    changeLoginPassword: (state, action) => {
+    changeUserPassword: (state, action) => {
       state.password = action.payload;
       state.error = false;
       state.response = '';
     },
-    displayLoginMessage: (state, action) => {
+    displayUserMessage: (state, action) => {
       state.response = action.payload;
       state.loading = false;
       state.error = false;
     },
-    displayLoginError: (state, action) => {
+    displayUserError: (state, action) => {
       state.response = action.payload;
       state.error = true;
       state.loading = false;
     },
-    toggleLoginLoading: (state) => {
+    toggleUserLoading: (state) => {
       state.loading = !state.loading;
     },
-    initLoginForm: (state) => {
+    initUserForm: (state) => {
       state.password = '';
       state.response = '';
       state.email = '';
+    },
+    toggleLogged: (state, action) => {
+      state.logged = action.payload;
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changeLoginEmail, changeLoginPassword, displayLoginMessage, displayLoginError, toggleLoginLoading, initLoginForm } = loginSlice.actions
+export const { changeUserEmail, changeUserPassword, displayUserMessage, displayUserError, toggleUserLoading, initUserForm, toggleLogged } = userSlice.actions
 
-export default loginSlice.reducer;
+export default userSlice.reducer;

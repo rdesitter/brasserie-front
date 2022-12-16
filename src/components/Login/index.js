@@ -1,9 +1,10 @@
 import './style.scss';
 import logo from '../LogoMini/logo.svg'
 import { useDispatch, useSelector } from 'react-redux';
-import { changeLoginEmail, changeLoginPassword } from '../../reducers/loginSlice';
+import { changeUserEmail, changeUserPassword } from '../../reducers/userSlice';
 import { useState } from 'react';
 import { logIn } from '../../actions';
+import { Navigate } from 'react-router';
 
 function Login() {
   const email = useSelector((state) => state.login.email);
@@ -11,6 +12,7 @@ function Login() {
   const response = useSelector((state) => state.login.response);
   const error = useSelector((state) => state.login.error);
   const loading = useSelector((state) => state.login.loading);
+  const logged = useSelector((state) => state.login.logged);
 
   const [visible, setVisible] = useState(false);
 
@@ -19,6 +21,10 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(logIn());
+  }
+
+  if (logged) {
+    return <Navigate to='/' replace />
   }
 
   return (
@@ -31,11 +37,11 @@ function Login() {
         <form className="form" onSubmit={handleSubmit} >
           <div className="form__group">
             <label htmlFor="email" className="form__label">Email</label>
-            <input type="email" value={email || ''} placeholder="Votre email" autoComplete='email' name="email" className="form__input" required onChange={(e) => dispatch(changeLoginEmail(e.target.value))} />
+            <input type="email" value={email || ''} placeholder="Votre email" autoComplete='email' name="email" className="form__input" required onChange={(e) => dispatch(changeUserEmail(e.target.value))} />
           </div>
           <div className="form__group">
             <label htmlFor="password" className="form__label">Mot de passe</label>
-            <input type={visible ? 'text' : 'password'} value={password || ''} placeholder="Votre mot de passe" className="form__input" name="password" id="password" autoComplete='current-password' required onChange={(e) => dispatch(changeLoginPassword(e.target.value) )} />
+            <input type={visible ? 'text' : 'password'} value={password || ''} placeholder="Votre mot de passe" className="form__input" name="password" id="password" autoComplete='current-password' required onChange={(e) => dispatch(changeUserPassword(e.target.value) )} />
           </div>
           <div className="form__group">
             <input type="checkbox" name="display-password" id="display-password" className="form__checkbox" onChange={() => setVisible(!visible)}/>
