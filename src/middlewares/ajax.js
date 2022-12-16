@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { LOGIN, SEND_MESSAGE } from '../actions';
 import { displayError, displayMessage, initForm, toggleLoading } from '../reducers/formSlice';
-import { displayUserError, initUserForm, toggleLogged, toggleUserLoading } from '../reducers/userSlice';
+import { displayUserError, toggleLogged, toggleUserLoading } from '../reducers/userSlice';
 
 const instance = axios.create({
   baseURL: 'http://localhost:3500'
@@ -44,7 +44,6 @@ const ajaxMiddleware = store => next => action => {
         console.log('res', response);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        store.dispatch(initForm());
         store.dispatch(toggleLogged(true));
       })
       .catch((error) => {
