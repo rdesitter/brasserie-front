@@ -41,11 +41,11 @@ function Header() {
       
         <ul className={show ? 'navbar__nav show' : 'navbar__nav'}>
           <li><HashLink to="#about" className="navbar__nav__item" onClick={handleToggle}>la brasserie</HashLink></li>
-          <li><HashLink to="#carte" className="navbar__nav__item">carte</HashLink></li>
-          <li><HashLink to="#photos" className="navbar__nav__item">photos</HashLink></li>
-          <li><HashLink to="#contact" className="navbar__nav__item">contact</HashLink></li>
+          <li><HashLink to="#carte" className="navbar__nav__item" onClick={handleToggle}>carte</HashLink></li>
+          <li><HashLink to="#photos" className="navbar__nav__item" onClick={handleToggle}>photos</HashLink></li>
+          <li><HashLink to="#contact" className="navbar__nav__item" onClick={handleToggle}>contact</HashLink></li>
           {logged && (
-            <li><Link to="/dashboard" className="navbar__nav__item">admin</Link></li>
+            <li><Link to="/dashboard" className="navbar__nav__item" onClick={handleToggle}>admin</Link></li>
           )}
         </ul>
       </div>
