@@ -1,4 +1,4 @@
-const SEND_MESSAGE = 'contact/sendMessage'
+export const SEND_MESSAGE = 'contact/sendMessage';
 
 function sendMessage() {
   return {
@@ -6,4 +6,12 @@ function sendMessage() {
   }
 }
 
-export { sendMessage };
+export const LOGIN = 'login/logIn';
+
+function logIn() {
+  return {
+    type: LOGIN,
+  }
+}
+
+export { sendMessage, logIn };
