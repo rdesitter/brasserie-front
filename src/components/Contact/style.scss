@@ -52,9 +52,12 @@
           flex-basis: 100%;
         }
       }
+      
       &__label {
-        display: none;
+        position: absolute;
+        text-indent: -3000px;
       }
+
       &__input {
         font-family: 'Raleway', sans-serif;
         font-size: 16px;
