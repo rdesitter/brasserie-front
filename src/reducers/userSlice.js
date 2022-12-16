@@ -36,10 +36,15 @@ export const userSlice = createSlice({
     toggleUserLoading: (state) => {
       state.loading = !state.loading;
     },
-    initUserForm: (state) => {
+    initUser: (state) => {
+      state.loading= false;
+      state.email = '';
+      state.name = '';
       state.password = '';
       state.response = '';
-      state.email = '';
+      state.role = '';
+      state.error = false;
+      state.logged = false;
     },
     toggleLogged: (state, action) => {
       state.logged = action.payload;
@@ -54,6 +59,6 @@ export const userSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { changeUserEmail, changeUserPassword, displayUserMessage, displayUserError, toggleUserLoading, initUserForm, toggleLogged, setUser } = userSlice.actions
+export const { changeUserEmail, changeUserPassword, displayUserMessage, displayUserError, toggleUserLoading, initUser, toggleLogged, setUser } = userSlice.actions
 
 export default userSlice.reducer;

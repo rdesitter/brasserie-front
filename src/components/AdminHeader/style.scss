@@ -80,12 +80,10 @@
 
         &.show {
             display: flex;
-            align-items: center;
         }
 
         @media screen and (min-width: 1200px) {
             display: flex;
-            align-items: center;
         }
 
         &__item {
@@ -99,13 +97,6 @@
             letter-spacing: 0.5px;
             margin: 10px 15px 0 15px;
             text-decoration: none;
-
-            &--button {
-                margin-top: 0;
-                background: transparent;
-                border: none;
-                cursor: pointer;
-            }
         }
     }
 }
