@@ -8,7 +8,7 @@ import './style.scss';
 function Carte() {
   // Initialisation du state family
   let families = data.families;
-  console.log(families);
+  // console.log(families);
   const [family, setFamily] = useState(families[0]);
 
   useEffect(() => {
