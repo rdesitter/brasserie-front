@@ -1,12 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export const userSlice = createSlice({
-  name: 'login',
+  name: 'user',
   initialState: {
     loading: false,
     email: '',
+    name: '',
     password: '',
     response: '',
+    role: '',
     error: false,
     logged: false,
   },
@@ -41,11 +43,17 @@ export const userSlice = createSlice({
     },
     toggleLogged: (state, action) => {
       state.logged = action.payload;
+    },
+    setUser: (state, action) => {
+      state.email = action.payload.email;
+      state.name = action.payload.name;
+      state.role = action.payload.role;
+      state.logged = true;
     }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changeUserEmail, changeUserPassword, displayUserMessage, displayUserError, toggleUserLoading, initUserForm, toggleLogged } = userSlice.actions
+export const { changeUserEmail, changeUserPassword, displayUserMessage, displayUserError, toggleUserLoading, initUserForm, toggleLogged, setUser } = userSlice.actions
 
 export default userSlice.reducer;

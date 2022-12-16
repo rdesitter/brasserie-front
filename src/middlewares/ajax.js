@@ -35,7 +35,7 @@ const ajaxMiddleware = store => next => action => {
   }
 
   if (action.type === LOGIN) {
-    const { login: { email, password } } = store.getState();
+    const { user: { email, password } } = store.getState();
 
     store.dispatch(toggleUserLoading());
     

@@ -7,12 +7,12 @@ import { logIn } from '../../actions';
 import { Navigate } from 'react-router';
 
 function Login() {
-  const email = useSelector((state) => state.login.email);
-  const password = useSelector((state) => state.login.password);
-  const response = useSelector((state) => state.login.response);
-  const error = useSelector((state) => state.login.error);
-  const loading = useSelector((state) => state.login.loading);
-  const logged = useSelector((state) => state.login.logged);
+  const email = useSelector((state) => state.user.email);
+  const password = useSelector((state) => state.user.password);
+  const response = useSelector((state) => state.user.response);
+  const error = useSelector((state) => state.user.error);
+  const loading = useSelector((state) => state.user.loading);
+  const logged = useSelector((state) => state.user.logged);
 
   const [visible, setVisible] = useState(false);
 

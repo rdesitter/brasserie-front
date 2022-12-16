@@ -6,7 +6,7 @@ function sendMessage() {
   }
 }
 
-export const LOGIN = 'login/logIn';
+export const LOGIN = 'user/logIn';
 
 function logIn() {
   return {
