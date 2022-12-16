@@ -1,0 +1,133 @@
+.intro {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	min-height: 100vh;
+	height: 100%;
+	padding: 0;
+	background: transparent url(./bg.jpg) no-repeat center center;
+	background-size: cover;
+	background-attachment: fixed;
+
+	&__button {
+    font-family: "Augustea", sans-serif;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #6e665b;
+    border: 0;
+    padding: 14px 20px;
+    margin: 0;
+    letter-spacing: 0.5px;
+    transition: all 0.5s;
+		text-decoration: none;
+    cursor: pointer;
+
+    &:hover, &:focus {
+      color: #161616;
+    }
+  }
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		align-items: center;
+		z-index: 1;
+
+		.svg-container {
+			display: inherit;
+			position: relative;
+			max-width: 240px;
+			vertical-align: middle;
+			overflow: hidden;
+
+			img {
+				width: 100%;
+			}
+		}
+	}
+
+	&__phone {
+		font-family: "Augustea", sans-serif;
+		text-decoration: none;
+		color: #fff;
+		font-weight: bold;
+		font-size: 20px;
+
+		&:hover, &:focus {
+			color: #8BBD1E;
+		}
+	}
+
+	&__information {
+		padding: 15px;
+		position: absolute;
+		bottom: 10px;
+		font-weight: bold;
+		color: #fff;
+		z-index: 1;
+	}
+
+	&__overlay {
+		position: absolute;
+		height: 100vh;
+		width: 100%;
+		background: rgba(0,0,0,0.4);
+		z-index: 0;
+	}
+}
+
+.intro h1 {
+	font-family: 'Dancing Script', cursive;
+	color: #fff;
+	font-size: 10em;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+.intro span {
+	color: #a7c44c;
+	font-weight: 600;
+}
+.intro p {
+	color: #fff;
+	font-weight: 300;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+.intro p.phone a {color: #fff !important;font-size: 20px;}
+.intro p.phone a:hover {color: #8BBD1E !important;}
+
+@media (max-width: 767px) {
+	.svg-container {max-width: 200px;}
+}
+.svg-content {
+display: inline-block;
+position: absolute;
+top: 0;
+left: 0;
+}
+.ouverture {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	color: white;
+	padding: 0px 20px 20px 20px; 
+}
+header .intro-text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	text-align: center;
+	padding-top: 60px;
+}
+header .intro-text a {color: white}
+header .intro-text a:hover, header .intro-text a:focus {color: #161616}

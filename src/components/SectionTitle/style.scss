@@ -1,0 +1,40 @@
+.section {
+  &__header {
+    background-size: cover;
+    background-attachment: fixed;
+    margin-bottom: 70px;
+    text-align: center !important;
+  }
+
+  &__overlay {
+    padding: 80px 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    color: #fff;
+    font-family: "Augustea", sans-serif;
+  }
+  
+  &__subtitle {
+    font-size: 22px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  &__link {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    opacity: 1;
+
+    &:hover, &:focus {
+      opacity: 0.8;
+    }
+  }
+}

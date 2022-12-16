@@ -1,0 +1,110 @@
+.contact {
+  padding: 0 0 120px 0;
+  background-color: #d8c9b5;
+  background-image: url(../App/diamond_upholstery.png), radial-gradient(ellipse farthest-corner at center center , #efe6dd 10%, #cec6bc 60%);
+  text-align: center;
+
+  &__header {
+    padding: 90px 0;
+    color: #fff;
+    background-color: #2b2625;
+    background-image: url(./noise.png), radial-gradient(ellipse farthest-corner at center center , #423737 10%, #2b2625 60%);
+    margin-bottom: 100px;
+
+    &__title {
+      color: #fff;
+      margin: 0;
+      text-align: center;
+    }
+
+    &__link {
+      text-decoration: none;
+      color: #fff;
+      &:hover, &:focus {
+        color: #8BBD1E;
+      }
+    }
+  }
+
+  &__text {
+    color: #777;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 300;
+  }
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .form {
+      &__group {
+        flex-grow: 1;
+        flex-basis: 100%;
+
+
+        @media screen and (min-width: 500px) {
+          flex-basis: calc((100% - 20px) / 2);
+        }
+
+        &--fullwidth {
+          flex-basis: 100%;
+        }
+      }
+      &__label {
+        display: none;
+      }
+      &__input {
+        font-family: 'Raleway', sans-serif;
+        font-size: 16px;
+        display: block;
+        width: 100%;
+        padding: 6px 12px;
+        line-height: 1.42857143;
+        color: #444;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ddd;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        -webkit-transition: none;
+        -o-transition: none;
+        transition: none;
+      }
+
+      &__button {
+        font-family: 'Raleway', sans-serif;
+        font-size: 16px;
+        border-radius: 4px;
+        text-transform: uppercase;
+        color: #fff;
+        background-color: #6e665b;
+        border: 0;
+        padding: 14px 20px;
+        margin: 0 auto;
+        letter-spacing: 0.5px;
+        transition: all 0.5s;
+        text-decoration: none;
+        cursor: pointer;
+    
+        &:hover, &:focus {
+          background-color: #7c7060;
+        }
+      }
+
+      &__response {
+        width: 100%;
+        font-weight: bold;
+        color: #8BBD1E;
+
+        &--error {
+          color: rgb(196, 26, 26);
+        }
+      }
+    }
+
+  }
+
+}

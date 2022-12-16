@@ -1,0 +1,69 @@
+.carte-category {
+  position: relative;
+  width: 100%;
+
+  @media screen and (min-width: 900px) {
+    width: 50%;
+  }
+
+  &::after {
+    content: "***";
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  &:last-of-type::after {
+    display: none;
+    margin: 0;
+  }
+}
+
+.category {
+  &__name {
+    padding: 10px 0;
+    text-transform: uppercase;
+    font-size: 18px;
+    font-family: 'Cheltenham';
+    text-align: center;
+  }
+
+  &__description {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: .5px;
+    line-height: 16px;
+  }
+
+  &-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+    &__name {
+      margin-bottom: 0;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 0 0 15px;
+    }
+
+    &__price {
+      font-style: italic;
+      line-height: 16px;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    &__description {
+      font-size: 13px;
+      font-style: italic;
+      letter-spacing: .5px;
+      line-height: 16px;
+      margin: -10px 0 0 0;
+    }
+  }
+}
