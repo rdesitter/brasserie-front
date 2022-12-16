@@ -4,9 +4,12 @@ import logo from '../LogoMini/logo.svg';
 import ToggleButton from './ToggleButton';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function Header() {
   const [show, setShow] = useState(false);
+  const logged = useSelector((state) => state.user.logged);
+
   const handleToggle = () => {
     setShow(!show);
   };
@@ -15,10 +18,12 @@ function Header() {
     document.addEventListener('scroll', (event) => {
 
       const navbarElt = document.getElementsByClassName('navbar')[0];
-      navbarElt.style.padding = "20px";
-      navbarElt.style.background = "#2a2623";
+      if(navbarElt) {
+        navbarElt.style.padding = "20px";
+        navbarElt.style.background = "#2a2623";
+      }
 
-      if(window.scrollY > 300) {
+      if(window.scrollY > 300 && navbarElt) {
         navbarElt.style.padding = "10px 20px";
       }
     })
@@ -39,6 +44,9 @@ function Header() {
           <li><HashLink to="#carte" className="navbar__nav__item">carte</HashLink></li>
           <li><HashLink to="#photos" className="navbar__nav__item">photos</HashLink></li>
           <li><HashLink to="#contact" className="navbar__nav__item">contact</HashLink></li>
+          {logged && (
+            <li><Link to="/dashboard" className="navbar__nav__item">admin</Link></li>
+          )}
         </ul>
       </div>
     </nav>
