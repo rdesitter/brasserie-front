@@ -19,15 +19,17 @@ const instance = axios.create({
   baseURL: "http://localhost:3500",
 });
 
-let refreshToken;
 let config;
 
 const token = localStorage.getItem('accessToken');
-console.log('token', token);
+let refreshToken = localStorage.getItem('refreshToken');
+
 if(token !== '') {
   config = {
-    headers: { "Content-Type": "application/json" },
-    authorization: `Bearer ${token}`,
+    headers: { 
+      "Content-Type": "application/json",
+      "authorization": `Bearer ${token}`,
+   },
   };
 } else {
   config = {
@@ -35,9 +37,9 @@ if(token !== '') {
   };
 }
 
-
+// Axios interceptor for 401
 instance.interceptors.response.use(
-  (response) =>  response,
+  (response) => response,
   async function (error) {
     const originalRequest = error.config;
     if (
@@ -48,12 +50,11 @@ instance.interceptors.response.use(
       originalRequest._retry = true;
       if (refreshToken && refreshToken !== "") {
         instance.defaults.headers.common["Authorization"] = `Bearer ${refreshToken}`;
-        console.log("refreshToken");
+
         await instance
           .post("/refreshToken")
           .then((response) => {
-            // TODO: mettre à jour l'accessToken dans le localStorage
-            console.log('refresh res', response);
+            localStorage.setItem('accessToken', response.data.accessToken)
             originalRequest.headers["Authorization"] = `Bearer ${response.data.accessToken}`;
             instance.defaults.headers.common["Authorization"] = `Bearer ${response.data.accessToken}`;
           })
@@ -67,6 +68,7 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 
 const ajaxMiddleware = (store) => (next) => (action) => {
   if (action.type === SEND_MESSAGE) {
@@ -126,7 +128,7 @@ const ajaxMiddleware = (store) => (next) => (action) => {
   }
 
   if (action.type === GET_USERS) {
-    instance.get("/users")
+    instance.get("/users", config)
       .then((response) => {
         store.dispatch(setUsers(response.data))
       })
