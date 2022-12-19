@@ -1,0 +1,14 @@
+.form-container {
+    background-color: #fdfdfd;
+    padding: 15px;
+}
+
+.form {
+    &__text {
+        margin: 0;
+
+        &--bold {
+            font-weight: bold;
+        }
+    }
+}

@@ -16,7 +16,6 @@ function Contact() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submit', name, email, message)
     dispatch(sendMessage())
   }
   return (

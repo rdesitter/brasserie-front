@@ -1,4 +1,3 @@
-import { HashLink } from 'react-router-hash-link';
 import './style.scss';
 import logo from '../LogoMini/logo.svg';
 import ToggleButton from '../Header/ToggleButton';
@@ -39,10 +38,7 @@ function AdminHeader() {
         </div>
       
         <ul className={show ? 'navbar__nav show' : 'navbar__nav'}>
-          <li><HashLink to="#about" className="navbar__nav__item" onClick={handleToggle}>la brasserie</HashLink></li>
-          <li><HashLink to="#carte" className="navbar__nav__item">carte</HashLink></li>
-          <li><HashLink to="#photos" className="navbar__nav__item">photos</HashLink></li>
-          <li><HashLink to="#contact" className="navbar__nav__item">contact</HashLink></li>
+          <li><Link to="/dashboard/user" className="navbar__nav__item" onClick={handleToggle}>Utilisateurs</Link></li>
           <li><Link to="/dashboard" className="navbar__nav__item">admin</Link></li>
           <Disconnect />
         </ul>

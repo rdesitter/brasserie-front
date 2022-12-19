@@ -65,6 +65,7 @@ a {
 }
 
 .container {
+	width: 100%;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
@@ -95,4 +96,25 @@ hr {
 	margin: 0 auto;
 	margin-bottom: 40px;
 	border: 0;
+}
+
+.button {
+	display: inline-block;
+	font-family: 'Raleway', sans-serif;
+	font-size: 16px;
+	border-radius: 4px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #6e665b;
+	border: 0;
+	padding: 14px 20px;
+	margin: 0 auto;
+	letter-spacing: 0.5px;
+	transition: all 0.5s;
+	text-decoration: none;
+	cursor: pointer;
+
+	&:hover, &:focus {
+	  background-color: #7c7060;
+	}
 }
