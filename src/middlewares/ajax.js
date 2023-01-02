@@ -1,6 +1,6 @@
 import axios from "axios";
-import { GET_CURRENT_USER, GET_USERS, LOGIN, REGISTER_USER, SAVE_CURRENT_USER, SEND_MESSAGE, SET_PASSWORD } from "../actions";
-import { displayErrorMessage, setUsers } from "../reducers/adminSlice";
+import { ADD_CARTE, GET_CARTES, GET_CURRENT_USER, GET_USERS, LOGIN, REGISTER_USER, SAVE_CURRENT_USER, SEND_MESSAGE, SET_PASSWORD } from "../actions";
+import { displayErrorMessage, setCartes, setUsers } from "../reducers/adminSlice";
 import { displayCurrentUserError, displayCurrentUserMessage, setCurrentUser, toggleCurrentUserLoading } from "../reducers/editUserSlice";
 import {
   displayError,
@@ -8,6 +8,7 @@ import {
   initForm,
   toggleLoading,
 } from "../reducers/formSlice";
+import { displayNewCarteError, displayNewCarteMessage, toggleNewCarteLoading } from "../reducers/newCarteSlice";
 import { displayNewUserError, displayNewUserMessage, toggleNewUserLoading, userActivated } from "../reducers/registerSlice";
 import {
   displayUserError,
@@ -207,6 +208,33 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       .catch((error) => {
         // console.log(error);
         store.dispatch(displayCurrentUserError(error.response.data.message));
+      })
+  }
+
+  if (action.type === GET_CARTES) {
+    instance.get('/cartes')
+      .then((response) => {
+        console.log(response);
+        store.dispatch(setCartes(response.data))
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  if (action.type === ADD_CARTE) {
+    const { newCarte: {name}} = store.getState();
+    console.log(name);
+    store.dispatch(toggleNewCarteLoading());
+    // Save carte in DB
+    instance.post('/cartes/add', { name }, config)
+      .then((response) => {
+        // console.log(response);
+        store.dispatch(displayNewCarteMessage(response.data.message));
+      })
+      .catch((error) => {
+        // console.log(error);
+        store.dispatch(displayNewCarteError(error.response.data.message));
       })
   }
 

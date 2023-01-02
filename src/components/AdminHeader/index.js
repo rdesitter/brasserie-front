@@ -39,6 +39,7 @@ function AdminHeader() {
       
         <ul className={show ? 'navbar__nav show' : 'navbar__nav'}>
           <li><Link to="/dashboard/user" className="navbar__nav__item" onClick={handleToggle}>Utilisateurs</Link></li>
+          <li><Link to="/dashboard/carte" className="navbar__nav__item" onClick={handleToggle}>Cartes</Link></li>
           <li><Link to="/dashboard" className="navbar__nav__item">admin</Link></li>
           <Disconnect />
         </ul>

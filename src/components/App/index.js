@@ -11,6 +11,9 @@ import { setUser } from '../../reducers/userSlice';
 import '../../style/style.scss';
 import Register from '../../pages/Register';
 import EditUser from '../../pages/Admin/Users/EditUser';
+import AllCartes from '../../pages/Admin/Cartes/AllCartes';
+import Carte from '../../pages/Admin/Cartes/Carte';
+import AddCarte from '../../pages/Admin/Cartes/AddCarte';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,9 +39,15 @@ function App() {
         {logged && (
           <>
             <Route path="/dashboard" element={ <Admin /> } />
+            {/* users  */}
             <Route path="/dashboard/user" element={ <AllUsers /> } />
             <Route path="/dashboard/user/add" element={ <AddUser /> } />
             <Route path="/dashboard/user/edit/:userId" element={ <EditUser /> } />
+
+            {/* cartes */}
+            <Route path="/dashboard/carte" element={ <AllCartes /> } />
+            <Route path="/dashboard/carte/:id" element={ <Carte /> } />
+            <Route path="/dashboard/carte/add" element={ <AddCarte /> } />
           </>
         )}
 

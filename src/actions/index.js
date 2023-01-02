@@ -22,11 +22,27 @@ function getUsers() {
   }
 }
 
+export const GET_CARTES = 'admin/getCartes';
+
+function getCartes() {
+  return {
+    type: GET_CARTES,
+  }
+}
+
 export const REGISTER_USER = 'register/registerUser';
 
 function registerUser() {
   return {
     type: REGISTER_USER,
+  }
+}
+
+export const ADD_CARTE = 'newCarte/addCarte';
+
+function addCarte() {
+  return {
+    type: ADD_CARTE,
   }
 }
 
@@ -58,4 +74,4 @@ function getCurrentUser(id) {
   }
 }
 
-export { sendMessage, logIn, getUsers, registerUser, setPassword, getCurrentUser, saveCurrentUser };
+export { sendMessage, logIn, getUsers, registerUser, setPassword, getCurrentUser, saveCurrentUser, getCartes, addCarte };
