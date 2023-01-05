@@ -1,61 +1,59 @@
-import { useEffect } from "react";
-import { Edit } from "react-feather";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
 import { getCartes } from "../../../../actions";
 import { formatDate } from "../../../../selectors/formatDate";
 import Dashboard from "../../../Dashboard";
-import './style.scss';
+import CategoryItem from "./CategoryItem";
+import "./style.scss";
 
 function Carte() {
+  const dispatch = useDispatch();
+  const { id: carteId } = useParams();
+  const [loading, setLoading] = useState(true);
 
-    const dispatch = useDispatch();
-    const { id : carteId } = useParams();
-    console.log(carteId);
+  const cartes = useSelector((state) => state.admin.cartes);
 
-    const cartes = useSelector((state) => state.admin.cartes);
-    const admin = useSelector((state) => state.user.admin);
+  const currentCarte = cartes.find(
+    (carte) => carte.id === parseInt(carteId, 10)
+  );
 
-    // console.log(users);
+  console.log("cur", currentCarte);
 
-    useEffect(() => {
-        dispatch(getCartes());    
-    }, [dispatch]);
+  useEffect(() => {
+    if (!currentCarte) {
+      dispatch(getCartes());
+    } else {
+      setLoading(false);
+    }
+  }, [currentCarte]);
 
-    return (
-        <Dashboard>
-            <div className="cartes">
-            <h2 className="cartes__title">Liste des cartes</h2>
-            <div className="cartes__container">
-                <table className="table">
-                    <thead>
-                        <tr className="table__row">
-                            <th className="table__cell">Nom</th>
-                            <th className="table__cell">Statut</th>
-                            <th className="table__cell">Modification</th>
-                            <th className="table__cell">Création</th>
-                            { admin && <th className="table__cell">Editer</th> }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {cartes.map((carte) => (
-                            <tr className="table__row" key={carte.id}>
-                                <td className="table__cell"><Link to={`/carte/${carte.id}`}>{carte.name}</Link></td>
-                                <td className="table__cell">{carte.active ? 'En ligne' : '---'}</td>
-                                <td className="table__cell">{formatDate(carte.updated_at)}</td>
-                                <td className="table__cell">{formatDate(carte.created_at)}</td>
-                                { admin && <td className="table__cell table__cell--edit"><Link to={`/dashboard/carte/edit/${carte.id}`} ><Edit /></Link></td> } 
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            {/* { admin && <Link className="button" to="/dashboard/user/add"> Ajouter un utilisateur </Link> } */}
-            
+  return (
+    <Dashboard>
+      {loading && <p>Chargement en cours</p>}
+      {!loading && (
+        <div className="cartes">
+          <h2 className="cartes__title">{currentCarte.name}</h2>
+          <h3
+            className={
+              currentCarte.active
+                ? "cartes__status cartes__status--active"
+                : "cartes__status"
+            }
+          >
+            {currentCarte.active ? "active" : "Non utilisée"}
+          </h3>
+          <p className="cartes__update">Dernière modification le {formatDate(currentCarte.updated_at)}</p>
+          <div className="cartes__container">
+            {currentCarte.categories &&
+              currentCarte.categories.map((category, index) => (
+                <CategoryItem key={index} category={category} />
+              ))}
+          </div>
         </div>
-        </Dashboard>
-    )
+      )}
+    </Dashboard>
+  );
 }
 
 export default Carte;

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ADD_CARTE, GET_CARTES, GET_CURRENT_USER, GET_USERS, LOGIN, REGISTER_USER, SAVE_CURRENT_USER, SEND_MESSAGE, SET_PASSWORD } from "../actions";
+import { ADD_CARTE, ADD_RECIPE, GET_CARTES, GET_CURRENT_USER, GET_USERS, LOGIN, REGISTER_USER, SAVE_CURRENT_USER, SEND_MESSAGE, SET_PASSWORD } from "../actions";
+import { displayAddRecipeError, displayAddRecipeMessage } from "../reducers/addRecipeSlice";
 import { displayErrorMessage, setCartes, setUsers } from "../reducers/adminSlice";
 import { displayCurrentUserError, displayCurrentUserMessage, setCurrentUser, toggleCurrentUserLoading } from "../reducers/editUserSlice";
 import {
@@ -235,6 +236,21 @@ const ajaxMiddleware = (store) => (next) => (action) => {
       .catch((error) => {
         // console.log(error);
         store.dispatch(displayNewCarteError(error.response.data.message));
+      })
+  }
+
+  if (action.type === ADD_RECIPE) {
+    const { addRecipe: {name, description, price}} = store.getState();
+    const {sectionId, carteId} = action.payload
+    console.log(name, description, price, sectionId);
+    instance.post(`/cartes/${carteId}/recipe/add`, {name, description, price, sectionId}, config)
+      .then(response => {
+        console.log('res', response);
+        store.dispatch(displayAddRecipeMessage(response.data.message))
+      })
+      .catch(error => {
+        console.log('error', error);
+        store.dispatch(displayAddRecipeError(error.response.data.message))
       })
   }
 

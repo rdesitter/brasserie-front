@@ -6,6 +6,7 @@ import formReducer from './reducers/formSlice';
 import newCarteReducer from './reducers/newCarteSlice';
 import registerReducer from './reducers/registerSlice';
 import userReducer from './reducers/userSlice';
+import addRecipeReducer from './reducers/addRecipeSlice';
 
 export default configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export default configureStore({
     register: registerReducer,
     editUser: editUserReducer,
     newCarte: newCarteReducer,
+    addRecipe: addRecipeReducer,
   },
   middleware: [ajaxMiddleware]
 })

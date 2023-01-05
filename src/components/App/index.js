@@ -48,6 +48,7 @@ function App() {
             <Route path="/dashboard/carte" element={ <AllCartes /> } />
             <Route path="/dashboard/carte/:id" element={ <Carte /> } />
             <Route path="/dashboard/carte/add" element={ <AddCarte /> } />
+            <Route path="/dashboard/carte/edit/:carteId" element={ <p>edit</p> } />
           </>
         )}
 

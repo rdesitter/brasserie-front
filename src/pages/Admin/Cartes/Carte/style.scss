@@ -1,6 +1,39 @@
 .cartes {
     position: relative;
 
+    &__modale {
+        padding: 2rem;
+        background: rgb(243, 243, 243);
+        position: absolute;
+        width: 80%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        z-index: 1;
+        box-shadow: 0 0 20px 7px rgb(0 0 0 / 25%);
+
+        .modale{
+            &__close {
+                position: absolute;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                top: 10px;
+                right: 10px;
+            }
+
+            &__form {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            &__title {
+                margin: 0 0 1rem;
+            }
+        } 
+    }
+
     &__container {
         background-color: #fdfdfd;
         padding: 15px;
@@ -9,6 +42,118 @@
 
     &__title {
         color: #fdfdfd;
+    }
+
+    &__status {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        margin-top: 10px;
+        color: #c4c4c4;
+        font-size: 1rem;
+
+        &::before {
+            position: absolute;
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #c4c4c4;
+            left: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &--active {
+            color: #02e032;
+
+            &::before {
+                background-color: #02e032;
+            }
+        }
+    }
+
+    &__category {
+        cursor: pointer;
+        margin: 0 0 1rem;
+    }
+
+    &__section {
+        &__container {
+            margin-bottom: 2rem;
+            &:last-of-type {
+                margin-bottom: 3rem;
+            }
+        }
+
+        &__title {
+            margin: 0 0 1rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        &__description {
+            font-style: italic;
+            margin: -1rem 0 1rem;
+            font-size: 0.9em;
+        }
+
+        &__recipe {
+            margin: 0 0 1rem 1rem;
+            
+            .recipe {
+                &__title {
+                    margin: 0 0 1rem;
+                    display: flex;
+                    justify-content: space-between;
+                }
+
+                &__price {
+                    font-weight: bold;
+                }
+
+                &__description {
+                    font-style: italic;
+                    margin: -1rem 0 1rem;
+                    font-size: 0.9em;
+                }
+            }
+        }
+
+        &__button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            
+            svg {
+                stroke: #777;
+                transition: all linear 0.3s;
+            }
+
+            &:hover {
+                
+                svg {
+                    fill: rgb(201, 201, 201);
+                }
+            }
+        }
+    }
+
+    .spacer {
+        flex-grow: 1;
+        position: relative;
+        &:before {
+            content: '';
+            background-color: #c4c4c4;
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            bottom: 6px;
+            height: 1px;
+            width: calc(100% - 20px);
+        }
     }
 }
 

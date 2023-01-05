@@ -74,4 +74,13 @@ function getCurrentUser(id) {
   }
 }
 
-export { sendMessage, logIn, getUsers, registerUser, setPassword, getCurrentUser, saveCurrentUser, getCartes, addCarte };
+export const ADD_RECIPE = 'addRecipe/addRecipe';
+
+function addRecipe(payload) {
+  return {
+    type: ADD_RECIPE,
+    payload,
+  }
+}
+
+export { sendMessage, logIn, getUsers, registerUser, setPassword, getCurrentUser, saveCurrentUser, getCartes, addCarte, addRecipe };
